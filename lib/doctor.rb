@@ -17,4 +17,15 @@ class Doctor
     Appointment.new(date, patient, self)
   end
   
+  def appointments
+    Appointment.all.select {|app| app.doctor = self}
+  end
+  
+  def patients
+    appointments.collect {|app| app.patient}
+  end
+  
+  
+  
+  
 end

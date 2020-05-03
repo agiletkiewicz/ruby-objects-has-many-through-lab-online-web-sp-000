@@ -1,6 +1,6 @@
 class Patient 
   
-    attr_reader :name
+  attr_reader :name
   
   @@all = []
   
@@ -13,7 +13,17 @@ class Patient
     @@all
   end
   
+  def new_appointment(date, doctor)
+    Appointment.new(date, self, doctor)
+  end
   
+  def appointments 
+    Appointment.all.select {|app| app.patient = self}
+  end
+  
+  def doctors 
+    appointments.collect {|app| app.doctor}
+  end
   
   
   
